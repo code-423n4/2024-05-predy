@@ -1,0 +1,134 @@
+{
+  "address": "0xBDf956Ff7889BBFa38918666F0fD5A934EdbBD65",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "PriceGreaterThanLimit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "PriceLessThanLimit",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "address",
+                  "name": "market",
+                  "type": "address"
+                },
+                {
+                  "internalType": "address",
+                  "name": "trader",
+                  "type": "address"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "nonce",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "deadline",
+                  "type": "uint256"
+                }
+              ],
+              "internalType": "struct OrderInfo",
+              "name": "info",
+              "type": "tuple"
+            },
+            {
+              "internalType": "address",
+              "name": "quoteToken",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "baseToken",
+              "type": "address"
+            },
+            {
+              "internalType": "int256",
+              "name": "baseTokenAmount",
+              "type": "int256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "quoteTokenAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "validatorAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "bytes",
+              "name": "validationData",
+              "type": "bytes"
+            }
+          ],
+          "internalType": "struct SpotOrder",
+          "name": "spotOrder",
+          "type": "tuple"
+        },
+        {
+          "internalType": "int256",
+          "name": "quoteTokenAmount",
+          "type": "int256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "validate",
+      "outputs": [],
+      "stateMutability": "pure",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x4b83795c7df4b6c62fc39a1882d8d4978c7e1bc7f774b0aca4d2e792175d73c5",
+  "receipt": {
+    "to": null,
+    "from": "0x4f071924D66BBC71A5254217893CC7D49938B1c4",
+    "contractAddress": "0xBDf956Ff7889BBFa38918666F0fD5A934EdbBD65",
+    "transactionIndex": 4,
+    "gasUsed": "3286931",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x5171b5e637282dcf54be421193b0d893e7d877458632b8a34062401b98e70b23",
+    "transactionHash": "0x4b83795c7df4b6c62fc39a1882d8d4978c7e1bc7f774b0aca4d2e792175d73c5",
+    "logs": [],
+    "blockNumber": 176423018,
+    "cumulativeGasUsed": "5732444",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "bdc5ae25e00ced17753e96c12fc6118e",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"PriceGreaterThanLimit\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PriceLessThanLimit\",\"type\":\"error\"},{\"inputs\":[{\"components\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"market\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"trader\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"internalType\":\"struct OrderInfo\",\"name\":\"info\",\"type\":\"tuple\"},{\"internalType\":\"address\",\"name\":\"quoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"int256\",\"name\":\"baseTokenAmount\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"quoteTokenAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"validatorAddress\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"validationData\",\"type\":\"bytes\"}],\"internalType\":\"struct SpotOrder\",\"name\":\"spotOrder\",\"type\":\"tuple\"},{\"internalType\":\"int256\",\"name\":\"quoteTokenAmount\",\"type\":\"int256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"validate\",\"outputs\":[],\"stateMutability\":\"pure\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"The LimitOrderValidator contract is responsible for validating the limit orders\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/markets/spot/SpotLimitOrderValidator.sol\":\"SpotLimitOrderValidator\"},\"evmVersion\":\"paris\",\"libraries\":{\":__CACHE_BREAKER__\":\"0x0000000000000031373036373939393737333637\"},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"src/libraries/orders/OrderInfoLib.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.17;\\n\\nstruct OrderInfo {\\n    address market;\\n    address trader;\\n    uint256 nonce;\\n    uint256 deadline;\\n}\\n\\n/// @notice helpers for handling OrderInfo objects\\nlibrary OrderInfoLib {\\n    bytes internal constant ORDER_INFO_TYPE = \\\"OrderInfo(address market,address trader,uint256 nonce,uint256 deadline)\\\";\\n    bytes32 internal constant ORDER_INFO_TYPE_HASH = keccak256(ORDER_INFO_TYPE);\\n\\n    /// @notice hash an OrderInfo object\\n    /// @param info The OrderInfo object to hash\\n    function hash(OrderInfo memory info) internal pure returns (bytes32) {\\n        return keccak256(abi.encode(ORDER_INFO_TYPE_HASH, info.market, info.trader, info.nonce, info.deadline));\\n    }\\n}\\n\",\"keccak256\":\"0x39ad592c624aa57ab2c4fc3a169a51fce4950f4711064a82e5615d47135ab946\",\"license\":\"UNLICENSED\"},\"src/libraries/orders/ResolvedOrder.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.17;\\n\\nimport {OrderInfo} from \\\"./OrderInfoLib.sol\\\";\\n\\nstruct ResolvedOrder {\\n    OrderInfo info;\\n    address token;\\n    uint256 amount;\\n    bytes32 hash;\\n    bytes sig;\\n}\\n\\nlibrary ResolvedOrderLib {\\n    /// @notice thrown when the order targets a different market contract\\n    error InvalidMarket();\\n\\n    /// @notice thrown if the order has expired\\n    error DeadlinePassed();\\n\\n    /// @notice Validates a resolved order, reverting if invalid\\n    /// @param resolvedOrder resovled order\\n    function validate(ResolvedOrder memory resolvedOrder) internal view {\\n        if (address(this) != address(resolvedOrder.info.market)) {\\n            revert InvalidMarket();\\n        }\\n\\n        if (block.timestamp > resolvedOrder.info.deadline) {\\n            revert DeadlinePassed();\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x2b4b6ea1de1d2a8852cc7c77e1764811e5605b854cac1b914807c544752bec7c\",\"license\":\"UNLICENSED\"},\"src/markets/spot/SpotLimitOrderValidator.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.17;\\n\\nimport {SpotOrder} from \\\"./SpotOrder.sol\\\";\\n\\nstruct SpotLimitOrderValidationData {\\n    uint256 limitQuoteTokenAmount;\\n}\\n\\n/**\\n * @notice The LimitOrderValidator contract is responsible for validating the limit orders\\n */\\ncontract SpotLimitOrderValidator {\\n    error PriceGreaterThanLimit();\\n\\n    error PriceLessThanLimit();\\n\\n    function validate(SpotOrder memory spotOrder, int256 quoteTokenAmount, address) external pure {\\n        SpotLimitOrderValidationData memory validationData =\\n            abi.decode(spotOrder.validationData, (SpotLimitOrderValidationData));\\n\\n        if (spotOrder.baseTokenAmount != 0) {\\n            if (spotOrder.baseTokenAmount > 0 && validationData.limitQuoteTokenAmount < uint256(-quoteTokenAmount)) {\\n                revert PriceGreaterThanLimit();\\n            }\\n\\n            if (spotOrder.baseTokenAmount < 0 && validationData.limitQuoteTokenAmount > uint256(quoteTokenAmount)) {\\n                revert PriceLessThanLimit();\\n            }\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x13e9b81380ca168408a091332457cb10f265e9bb411322bb74a5397476921597\",\"license\":\"UNLICENSED\"},\"src/markets/spot/SpotOrder.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.17;\\n\\nimport {OrderInfo, OrderInfoLib} from \\\"../../libraries/orders/OrderInfoLib.sol\\\";\\nimport {ResolvedOrder} from \\\"../../libraries/orders/ResolvedOrder.sol\\\";\\n\\nstruct SpotOrder {\\n    OrderInfo info;\\n    address quoteToken;\\n    address baseToken;\\n    int256 baseTokenAmount;\\n    uint256 quoteTokenAmount;\\n    address validatorAddress;\\n    bytes validationData;\\n}\\n\\n/// @notice helpers for handling predict order objects\\nlibrary SpotOrderLib {\\n    using OrderInfoLib for OrderInfo;\\n\\n    bytes internal constant SPOT_ORDER_TYPE = abi.encodePacked(\\n        \\\"SpotOrder(\\\",\\n        \\\"OrderInfo info,\\\",\\n        \\\"address quoteToken,\\\",\\n        \\\"address baseToken,\\\",\\n        \\\"int256 baseTokenAmount,\\\",\\n        \\\"uint256 quoteTokenAmount,\\\",\\n        \\\"address validatorAddress,\\\",\\n        \\\"bytes validationData)\\\"\\n    );\\n\\n    bytes internal constant ORDER_TYPE = abi.encodePacked(SPOT_ORDER_TYPE, OrderInfoLib.ORDER_INFO_TYPE);\\n    bytes32 internal constant SPOT_ORDER_TYPE_HASH = keccak256(ORDER_TYPE);\\n\\n    string internal constant TOKEN_PERMISSIONS_TYPE = \\\"TokenPermissions(address token,uint256 amount)\\\";\\n\\n    /// @dev Note that sub-structs have to be defined in alphabetical order in the EIP-712 spec\\n    string internal constant PERMIT2_ORDER_TYPE = string(\\n        abi.encodePacked(\\\"SpotOrder witness)\\\", OrderInfoLib.ORDER_INFO_TYPE, SPOT_ORDER_TYPE, TOKEN_PERMISSIONS_TYPE)\\n    );\\n\\n    /// @notice hash the given order\\n    /// @param order the order to hash\\n    /// @return the eip-712 order hash\\n    function hash(SpotOrder memory order) internal pure returns (bytes32) {\\n        return keccak256(\\n            abi.encode(\\n                SPOT_ORDER_TYPE_HASH,\\n                order.info.hash(),\\n                order.quoteToken,\\n                order.baseToken,\\n                order.baseTokenAmount,\\n                order.quoteTokenAmount,\\n                order.validatorAddress,\\n                keccak256(order.validationData)\\n            )\\n        );\\n    }\\n\\n    function resolve(SpotOrder memory spotOrder, bytes memory sig) internal pure returns (ResolvedOrder memory) {\\n        uint256 amount;\\n        address token;\\n\\n        if (spotOrder.baseTokenAmount > 0) {\\n            token = spotOrder.quoteToken;\\n            amount = spotOrder.quoteTokenAmount;\\n        } else {\\n            token = spotOrder.baseToken;\\n            amount = uint256(-spotOrder.baseTokenAmount);\\n        }\\n\\n        return ResolvedOrder(spotOrder.info, token, amount, hash(spotOrder), sig);\\n    }\\n}\\n\",\"keccak256\":\"0x266f634c38ce1aa95ffe70c9e16cb1ecb8fb3edb1faf35ca6d51440ac2883b69\",\"license\":\"UNLICENSED\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506103be806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063a59340f914610030575b600080fd5b61004361003e366004610239565b610045565b005b60008360c0015180602001905181019061005f919061031c565b905083606001516000146100d9576000846060015113801561008957506100858361035e565b8151105b156100a75760405163678487e160e01b815260040160405180910390fd5b600084606001511280156100bb5750805183105b156100d95760405163feca548760e01b815260040160405180910390fd5b50505050565b634e487b7160e01b600052604160045260246000fd5b60405160e0810167ffffffffffffffff81118282101715610118576101186100df565b60405290565b80356001600160a01b038116811461013557600080fd5b919050565b60006080828403121561014c57600080fd5b6040516080810181811067ffffffffffffffff8211171561016f5761016f6100df565b60405290508061017e8361011e565b815261018c6020840161011e565b602082015260408301356040820152606083013560608201525092915050565b600082601f8301126101bd57600080fd5b813567ffffffffffffffff808211156101d8576101d86100df565b604051601f8301601f19908116603f01168101908282118183101715610200576102006100df565b8160405283815286602085880101111561021957600080fd5b836020870160208301376000602085830101528094505050505092915050565b60008060006060848603121561024e57600080fd5b833567ffffffffffffffff8082111561026657600080fd5b90850190610140828803121561027b57600080fd5b6102836100f5565b61028d888461013a565b815261029b6080840161011e565b60208201526102ac60a0840161011e565b604082015260c0830135606082015260e083013560808201526102d2610100840161011e565b60a0820152610120830135828111156102ea57600080fd5b6102f6898286016101ac565b60c08301525094505050602084013591506103136040850161011e565b90509250925092565b60006020828403121561032e57600080fd5b6040516020810181811067ffffffffffffffff82111715610351576103516100df565b6040529151825250919050565b6000600160ff1b820161038157634e487b7160e01b600052601160045260246000fd5b506000039056fea2646970667358221220857822fb0a7c19e50bf5e63a3011207b4716d556aeb965e5c52810ade708931e64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063a59340f914610030575b600080fd5b61004361003e366004610239565b610045565b005b60008360c0015180602001905181019061005f919061031c565b905083606001516000146100d9576000846060015113801561008957506100858361035e565b8151105b156100a75760405163678487e160e01b815260040160405180910390fd5b600084606001511280156100bb5750805183105b156100d95760405163feca548760e01b815260040160405180910390fd5b50505050565b634e487b7160e01b600052604160045260246000fd5b60405160e0810167ffffffffffffffff81118282101715610118576101186100df565b60405290565b80356001600160a01b038116811461013557600080fd5b919050565b60006080828403121561014c57600080fd5b6040516080810181811067ffffffffffffffff8211171561016f5761016f6100df565b60405290508061017e8361011e565b815261018c6020840161011e565b602082015260408301356040820152606083013560608201525092915050565b600082601f8301126101bd57600080fd5b813567ffffffffffffffff808211156101d8576101d86100df565b604051601f8301601f19908116603f01168101908282118183101715610200576102006100df565b8160405283815286602085880101111561021957600080fd5b836020870160208301376000602085830101528094505050505092915050565b60008060006060848603121561024e57600080fd5b833567ffffffffffffffff8082111561026657600080fd5b90850190610140828803121561027b57600080fd5b6102836100f5565b61028d888461013a565b815261029b6080840161011e565b60208201526102ac60a0840161011e565b604082015260c0830135606082015260e083013560808201526102d2610100840161011e565b60a0820152610120830135828111156102ea57600080fd5b6102f6898286016101ac565b60c08301525094505050602084013591506103136040850161011e565b90509250925092565b60006020828403121561032e57600080fd5b6040516020810181811067ffffffffffffffff82111715610351576103516100df565b6040529151825250919050565b6000600160ff1b820161038157634e487b7160e01b600052601160045260246000fd5b506000039056fea2646970667358221220857822fb0a7c19e50bf5e63a3011207b4716d556aeb965e5c52810ade708931e64736f6c63430008130033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "The LimitOrderValidator contract is responsible for validating the limit orders",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}
