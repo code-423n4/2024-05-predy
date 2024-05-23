@@ -76,61 +76,61 @@ Market order flow of SpotMarket.
 
 | File   | Logic Contracts | Interfaces | SLOC  | Purpose | Libraries used |
 | ------ | --------------- | ---------- | ----- | -----   | ------------ |
-| /src/PredyPool.sol | 1| **** | 209 | |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol<br>@openzeppelin-upgradeable/contracts/proxy/utils/Initializable.sol<br>@solmate/src/utils/SafeTransferLib.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/PriceFeed.sol | 2| **** | 39 | |@solmate/src/utils/FixedPointMathLib.sol|
+| /src/PredyPool.sol | 1| **** | 209 | Holds the state for all pairs and vaults |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol<br>@openzeppelin-upgradeable/contracts/proxy/utils/Initializable.sol<br>@solmate/src/utils/SafeTransferLib.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/PriceFeed.sol | 2| **** | 39 | A contract that provides the square root of the oracle price. |@solmate/src/utils/FixedPointMathLib.sol|
 | /src/base/BaseHookCallback.sol | 1| **** | 18 | ||
 | /src/base/BaseHookCallbackUpgradable.sol | 1| **** | 20 | |@openzeppelin-upgradeable/contracts/proxy/utils/Initializable.sol|
-| /src/base/BaseMarket.sol | 1| **** | 90 | |@solmate/src/auth/Owned.sol|
-| /src/base/BaseMarketUpgradable.sol | 1| **** | 127 | ||
-| /src/base/SettlementCallbackLib.sol | 1| **** | 153 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/libraries/ApplyInterestLib.sol | 1| **** | 65 | ||
-| /src/libraries/Constants.sol | 1| **** | 18 | ||
-| /src/libraries/DataType.sol | 1| **** | 34 | ||
-| /src/libraries/InterestRateModel.sol | 1| **** | 24 | ||
-| /src/libraries/PairLib.sol | 1| **** | 6 | ||
-| /src/libraries/Perp.sol | 1| **** | 601 | |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-periphery/contracts/libraries/PositionKey.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@solmate/src/utils/SafeCastLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/PerpFee.sol | 1| **** | 121 | |@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/PositionCalculator.sol | 1| **** | 177 | |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/PremiumCurveModel.sol | 1| **** | 11 | ||
-| /src/libraries/Reallocation.sol | 1| **** | 143 | |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/ScaledAsset.sol | 1| **** | 190 | |@solmate/src/utils/FixedPointMathLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/SlippageLib.sol | 1| **** | 41 | ||
-| /src/libraries/Trade.sol | 1| **** | 108 | |@openzeppelin/contracts/token/ERC20/IERC20.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/UniHelper.sol | 1| **** | 107 | |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-periphery/contracts/libraries/PositionKey.sol|
-| /src/libraries/VaultLib.sol | 1| **** | 47 | ||
-| /src/libraries/logic/AddPairLogic.sol | 1| **** | 175 | |@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol<br>@openzeppelin/contracts/token/ERC20/IERC20.sol<br>@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol<br>@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol|
-| /src/libraries/logic/LiquidationLogic.sol | 1| **** | 119 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/libraries/logic/ReaderLogic.sol | 1| **** | 53 | ||
-| /src/libraries/logic/ReallocationLogic.sol | 1| **** | 70 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/libraries/logic/SupplyLogic.sol | 1| **** | 67 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/libraries/logic/TradeLogic.sol | 1| **** | 63 | ||
-| /src/libraries/math/Bps.sol | 1| **** | 10 | ||
-| /src/libraries/math/LPMath.sol | 1| **** | 118 | |@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/math/Math.sol | 1| **** | 54 | |@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@solmate/src/utils/FixedPointMathLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
-| /src/libraries/orders/DecayLib.sol | 1| **** | 32 | ||
-| /src/libraries/orders/OrderInfoLib.sol | 1| **** | 14 | ||
-| /src/libraries/orders/Permit2Lib.sol | 1| **** | 23 | |@uniswap/permit2/src/interfaces/ISignatureTransfer.sol|
-| /src/libraries/orders/ResolvedOrder.sol | 1| **** | 21 | ||
-| /src/markets/L2Decoder.sol | 1| **** | 63 | ||
-| /src/markets/gamma/ArrayLib.sol | 1| **** | 24 | ||
-| /src/markets/gamma/GammaOrder.sol | 2| **** | 118 | ||
-| /src/markets/gamma/GammaTradeMarket.sol | 1| **** | 347 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol<br>@uniswap/permit2/src/interfaces/IPermit2.sol|
-| /src/markets/gamma/GammaTradeMarketL2.sol | 1| **** | 81 | ||
-| /src/markets/gamma/GammaTradeMarketLib.sol | 1| **** | 179 | ||
-| /src/markets/gamma/GammaTradeMarketWrapper.sol | 1| **** | 13 | ||
-| /src/markets/gamma/L2GammaDecoder.sol | 1| **** | 76 | ||
-| /src/markets/perp/PerpMarket.sol | 1| **** | 44 | ||
-| /src/markets/perp/PerpMarketLib.sol | 1| **** | 171 | ||
-| /src/markets/perp/PerpMarketV1.sol | 1| **** | 272 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@uniswap/permit2/src/interfaces/IPermit2.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol|
-| /src/markets/perp/PerpOrder.sol | 1| **** | 63 | ||
-| /src/markets/perp/PerpOrderV3.sol | 1| **** | 67 | ||
-| /src/settlements/UniswapSettlement.sol | 1| **** | 52 | |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol<br>@uniswap/v3-periphery/contracts/interfaces/IQuoterV2.sol|
-| /src/tokenization/SupplyToken.sol | 1| **** | 21 | |@solmate/src/tokens/ERC20.sol|
-| /src/types/GlobalData.sol | 1| **** | 90 | |@solmate/src/utils/SafeTransferLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol<br>@solmate/src/tokens/ERC20.sol|
-| /src/types/LockData.sol | 1| **** | 10 | ||
-| /src/vendors/AggregatorV3Interface.sol | ****| 1 | 14 | ||
-| /src/vendors/IPyth.sol | ****| 1 | 11 | ||
-| /src/vendors/IUniswapV3PoolOracle.sol | ****| 1 | 25 | ||
+| /src/base/BaseMarket.sol | 1| **** | 90 | The base contract for the market contract |@solmate/src/auth/Owned.sol|
+| /src/base/BaseMarketUpgradable.sol | 1| **** | 127 | The base contract for an upgradable market contract ||
+| /src/base/SettlementCallbackLib.sol | 1| **** | 153 | A library that supports methods for token swap |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/libraries/ApplyInterestLib.sol | 1| **** | 65 | A library that updates interest rates and premiums ||
+| /src/libraries/Constants.sol | 1| **** | 18 | A library that has constant values ||
+| /src/libraries/DataType.sol | 1| **** | 34 | A library that defines data types ||
+| /src/libraries/InterestRateModel.sol | 1| **** | 24 | A library that defines the interest rate curve ||
+| /src/libraries/PairLib.sol | 1| **** | 6 | A library that validates pairs. ||
+| /src/libraries/Perp.sol | 1| **** | 601 | A library for updating Perp and Squart positions |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-periphery/contracts/libraries/PositionKey.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@solmate/src/utils/SafeCastLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/PerpFee.sol | 1| **** | 121 | A library that calculates and applies interest rates and premiums for Perp and Squart positions |@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/PositionCalculator.sol | 1| **** | 177 | A library that calculates position value and Min. margin |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/PremiumCurveModel.sol | 1| **** | 11 | A library that defines the premium curve ||
+| /src/libraries/Reallocation.sol | 1| **** | 143 | A library that calculates the new range for reallocating LP ranges |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/ScaledAsset.sol | 1| **** | 190 | A library that defines tokens that accrue interest compounding through lending |@solmate/src/utils/FixedPointMathLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/SlippageLib.sol | 1| **** | 41 | A library that performs slippage checks ||
+| /src/libraries/Trade.sol | 1| **** | 108 | A library for trading Perp and Squart |@openzeppelin/contracts/token/ERC20/IERC20.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/UniHelper.sol | 1| **** | 107 | A library for obtaining TWAP and trading fees from UniswapV3Pool. |@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-periphery/contracts/libraries/PositionKey.sol|
+| /src/libraries/VaultLib.sol | 1| **** | 47 | A library for creating Vaults ||
+| /src/libraries/logic/AddPairLogic.sol | 1| **** | 175 | Logic for adding and validating new pairs |@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol<br>@openzeppelin/contracts/token/ERC20/IERC20.sol<br>@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol<br>@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol|
+| /src/libraries/logic/LiquidationLogic.sol | 1| **** | 119 | Logic for forced liquidation |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/libraries/logic/ReaderLogic.sol | 1| **** | 53 | A library for reading the state of pairs and vaults ||
+| /src/libraries/logic/ReallocationLogic.sol | 1| **** | 70 | Logic for reallocating LP ranges. |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/libraries/logic/SupplyLogic.sol | 1| **** | 67 | Logic for supplying and withdrawing tokens |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/libraries/logic/TradeLogic.sol | 1| **** | 63 | Logic for trading Perp and Squart. ||
+| /src/libraries/math/Bps.sol | 1| **** | 10 | A library for calculating n% above or below a given price. ||
+| /src/libraries/math/LPMath.sol | 1| **** | 118 | A library for liquidity calculations related to Uniswap V3 LP positions. |@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@uniswap/v3-core/contracts/libraries/TickMath.sol<br>@uniswap/v3-core/contracts/libraries/FixedPoint96.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/math/Math.sol | 1| **** | 54 | math library |@uniswap/v3-core/contracts/libraries/FullMath.sol<br>@solmate/src/utils/FixedPointMathLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol|
+| /src/libraries/orders/DecayLib.sol | 1| **** | 32 | math library ||
+| /src/libraries/orders/OrderInfoLib.sol | 1| **** | 14 | Common order information library ||
+| /src/libraries/orders/Permit2Lib.sol | 1| **** | 23 | A library that outputs parameters compatible with permit2 |@uniswap/permit2/src/interfaces/ISignatureTransfer.sol|
+| /src/libraries/orders/ResolvedOrder.sol | 1| **** | 21 | A structure that extracts necessary information for validation from custom orders. ||
+| /src/markets/L2Decoder.sol | 1| **** | 63 | A library for compressing calldata size. ||
+| /src/markets/gamma/ArrayLib.sol | 1| **** | 24 | A library for pushing and removing item from array ||
+| /src/markets/gamma/GammaOrder.sol | 2| **** | 118 | Orders for gamma trade market ||
+| /src/markets/gamma/GammaTradeMarket.sol | 1| **** | 347 | The core of gamma trade market |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol<br>@uniswap/permit2/src/interfaces/IPermit2.sol|
+| /src/markets/gamma/GammaTradeMarketL2.sol | 1| **** | 81 | A contract extends GammaTradeMarket to add L2 specific methods ||
+| /src/markets/gamma/GammaTradeMarketLib.sol | 1| **** | 179 | A library for validating AutoHedge and AutoClose. ||
+| /src/markets/gamma/GammaTradeMarketWrapper.sol | 1| **** | 13 | This is for testing purpose ||
+| /src/markets/gamma/L2GammaDecoder.sol | 1| **** | 76 | A library for compressing calldata size. ||
+| /src/markets/perp/PerpMarket.sol | 1| **** | 44 | A contract extends PerpMarketV1 to add L2 specific methods ||
+| /src/markets/perp/PerpMarketLib.sol | 1| **** | 171 | A library for validating perp trades ||
+| /src/markets/perp/PerpMarketV1.sol | 1| **** | 272 | The core of perp market |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@uniswap/permit2/src/interfaces/IPermit2.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol<br>@openzeppelin-upgradeable/contracts/security/ReentrancyGuardUpgradeable.sol|
+| /src/markets/perp/PerpOrder.sol | 1| **** | 63 | deprecate ||
+| /src/markets/perp/PerpOrderV3.sol | 1| **** | 67 | A library for defining perp orders ||
+| /src/settlements/UniswapSettlement.sol | 1| **** | 52 | A library for token swaps using Uniswap's Swap Router |@solmate/src/utils/SafeTransferLib.sol<br>@solmate/src/tokens/ERC20.sol<br>@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol<br>@uniswap/v3-periphery/contracts/interfaces/IQuoterV2.sol|
+| /src/tokenization/SupplyToken.sol | 1| **** | 21 | The bond token for the lending pool |@solmate/src/tokens/ERC20.sol|
+| /src/types/GlobalData.sol | 1| **** | 90 | Provides global data and methods for locking when calling back from trade functions |@solmate/src/utils/SafeTransferLib.sol<br>@openzeppelin/contracts/utils/math/SafeCast.sol<br>@solmate/src/tokens/ERC20.sol|
+| /src/types/LockData.sol | 1| **** | 10 | Defines the data structure for locks ||
+| /src/vendors/AggregatorV3Interface.sol | ****| 1 | 14 | An interface of Chainlink aggregator ||
+| /src/vendors/IPyth.sol | ****| 1 | 11 | An interface of Pyth ||
+| /src/vendors/IUniswapV3PoolOracle.sol | ****| 1 | 25 | An interface of UniswapV3PoolOracle ||
 | **Totals** | **54** | **3** | **4909** | | |
 
 ### Files out of scope
