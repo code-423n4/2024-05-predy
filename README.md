@@ -28,8 +28,7 @@ _Note for C4 wardens: Anything included in this `Automated Findings / Publicly K
 
 # Overview
 
-[ ⭐️ SPONSORS: add info here ]
-
+Predy is an on-chain exchange for trading Gamma and Perpetuals. It features Squart, which allows trading of perpetuals with gamma exposure covered by Uniswap V3.
 
 ## Architecture
 
@@ -146,7 +145,7 @@ Market order flow of SpotMarket.
 
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
-| ERC20 used by the protocol              |       WETH, USDC, ARB, USDT, DAI, WBTC
+| ERC20 used by the protocol              |       Any ERC20 on Uniswap Pool
 | Test coverage                           | -                          |
 | ERC721 used  by the protocol            |            None              |
 | ERC777 used by the protocol             |           None                |
@@ -206,14 +205,11 @@ https://predyfinance.medium.com/postmortem-report-on-the-details-of-the-events-o
 
 ## All trusted roles in the protocol
 
-[ ⭐️ SPONSORS: please fill in the description part ]
-
-
 
 | Role            | Description                  |
 | --------------- | ---------------------------- |
-| Operator        |                              |
-| Pool Owner      |                              |
+| Operator        |  Operator can add a new pair |
+| Pool Owner      |  Pool owner can update parameters related to the pair |
 
 ## Describe any novel or unique curve logic or mathematical models implemented in the contracts:
 
@@ -233,9 +229,9 @@ npm i
 forge test
 ```
 
-To run code coverage (note this is currently throwing a `stack too deep` error)
+To run code coverage
 ```bash
-forge coverage 
+forge coverage --ir-minimum
 ```
 
 
