@@ -146,7 +146,7 @@ Market order flow of SpotMarket.
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
 | ERC20 used by the protocol              |       Any ERC20 on Uniswap Pool
-| Test coverage                           | 26.21% (499/1904 statements)            |
+| Test coverage                           | 67.73% (1270/1875 statements)            |
 | ERC721 used  by the protocol            |            None              |
 | ERC777 used by the protocol             |           None                |
 | ERC1155 used by the protocol            |              None            |
@@ -224,7 +224,7 @@ Calculating the Min. margin is unique. Please refer to [the documentation](https
 ```bash
 git clone https://github.com/code-423n4/2024-05-predy
 cd 2024-05-predy
-foundryup
+foundryup --version nightly-5b7e4cb3c882b28f3c32ba580de27ce7381f415a
 npm i
 forge test
 ```
