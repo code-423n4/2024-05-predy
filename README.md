@@ -205,9 +205,6 @@ https://predyfinance.medium.com/postmortem-report-on-the-details-of-the-events-o
 
 ## All trusted roles in the protocol
 
-[ ⭐️ SPONSORS: please fill in the description part ]
-
-
 
 | Role            | Description                  |
 | --------------- | ---------------------------- |
