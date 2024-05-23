@@ -146,7 +146,7 @@ Market order flow of SpotMarket.
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
 | ERC20 used by the protocol              |       Any ERC20 on Uniswap Pool
-| Test coverage                           | -                          |
+| Test coverage                           | 26.21% (499/1904 statements)            |
 | ERC721 used  by the protocol            |            None              |
 | ERC777 used by the protocol             |           None                |
 | ERC1155 used by the protocol            |              None            |
@@ -234,6 +234,7 @@ To run code coverage
 forge coverage --ir-minimum
 ```
 
+See [coverage table](https://github.com/code-423n4/2024-05-predy/blob/main/coverage-table.md) for coverage for files in scope
 
 
 
