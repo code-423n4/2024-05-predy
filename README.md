@@ -229,7 +229,7 @@ npm i
 forge test
 ```
 
-To run code coverage (note this is currently throwing a `stack too deep` error)
+To run code coverage
 ```bash
 forge coverage --ir-minimum
 ```
