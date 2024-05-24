@@ -224,7 +224,7 @@ Calculating the Min. margin is unique. Please refer to [the documentation](https
 ```bash
 git clone https://github.com/code-423n4/2024-05-predy
 cd 2024-05-predy
-foundryup --version nightly-5b7e4cb3c882b28f3c32ba580de27ce7381f415a
+foundryup --version nightly-5b7e4cb3c882b28f3c32ba580de27ce7381f415a  # this is to avoid some bug that occurs with the recent version of foundry
 npm i
 forge test
 ```
