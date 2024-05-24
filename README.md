@@ -145,7 +145,7 @@ Market order flow of SpotMarket.
 
 | Question                                | Answer                       |
 | --------------------------------------- | ---------------------------- |
-| ERC20 used by the protocol              |       Any ERC20 on Uniswap Pool
+| ERC20 used by the protocol              |       WETH, USDC, ARB, USDT, DAI, WBTC
 | Test coverage                           | 67.73% (1270/1875 statements)            |
 | ERC721 used  by the protocol            |            None              |
 | ERC777 used by the protocol             |           None                |
@@ -157,7 +157,7 @@ Market order flow of SpotMarket.
 | Question                                                                                                                                                   | Answer |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
 | [Missing return values](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#missing-return-values)                                                      |   Yes  |
-| [Fee on transfer](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#fee-on-transfer)                                                                  |  Yes  |
+| [Fee on transfer](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#fee-on-transfer)                                                                  |  No  |
 | [Balance changes outside of transfers](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#balance-modifications-outside-of-transfers-rebasingairdrops) | Yes    |
 | [Upgradeability](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#upgradable-tokens)                                                                 |   Yes  |
 | [Flash minting](https://github.com/d-xo/weird-erc20?tab=readme-ov-file#flash-mintable-tokens)                                                              | Yes    |
