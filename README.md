@@ -196,7 +196,7 @@ Market order flow of SpotMarket.
 ## Main invariants
 
 - Assuming sufficient liquidity, safe vaults cannot be liquidated, whereas unsafe vaults can be liquidated. This ensures that only positions that pose a risk to the system are targeted for liquidation, maintaining the integrity of the platform.
-- Given sufficient liquidity, the reallocation of ranges is always possible. 
+- If there is sufficient liquidity and the range threshold conditions are met, the reallocation of the Uniswap V3 LP range is always possible.
 
 
 ## Attack ideas (where to focus for bugs)
