@@ -3,7 +3,7 @@
   - HM awards: $79,700 in USDC
   - QA awards: $3,300 in USDC
   - Judge awards: $9,900 in USDC
-  - Lookout awards: 6,600 in USDC
+  - Validator awards: 6,600 in USDC
   - Scout awards: $500 in USDC
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2024-05-predy/submit)
