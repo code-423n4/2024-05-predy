@@ -1,0 +1,1708 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q2-2024 / predy-may24
+==============================================================
+
+[05/24/2024 15:30] knownfactc4_29311 (pinned)
+👋 Hello and welcome to the audit channel for the $100,000 **Predy** audit!
+
+📆 Audit opens 05/24/2024 20:00 (20:00 UTC) and runs through 06/14/2024 20:00 (20:00 UTC) (21 days).
+
+Please give a warm welcome to the Predy team, particularly @syuhei, who will be available for questions either here in the channel or via a PRIVATE thread in the JST timezone. 
+
+🤖 **Documentation bot assistance:** For general questions about the codebase, give our documentation bot a try, by tagging  @Docs Wolf in any thread (private or public) and asking your question. The bot will make its best attempt to answer based on the codebase and documentation, and link you to relevant resources.  
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this audit, consider enabling notifications for this channel. 🐺 ⏰
+
+Audit Page: https://code4rena.com/audits/2024-05-predy
+
+{Reactions}
+👍 (3) 🫶 (4) 
+
+[05/24/2024 15:31] knownfactc4_29311
+Pinned a message.
+
+
+[05/24/2024 20:02] C4 (pinned)
+**Automated Findings / Publicly Known Issues**
+
+Reminder: all [Automated Findings / Publicly Known Issues](https://github.com/code-423n4/2024-05-predy#automated-findings--publicly-known-issues) are out of scope and ineligible for awards.
+
+{Embed}
+https://github.com/code-423n4/2024-05-predy
+GitHub - code-423n4/2024-05-predy
+Contribute to code-423n4/2024-05-predy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/a752f8fd-ae79-4d48-83da-8a6a213214e9-D71D1
+
+
+[05/24/2024 20:11] thebrittfactor
+Pinned a message.
+
+
+[05/25/2024 00:07] syuhei. (pinned)
+👋Hello, I'm Syuhei. 
+Please feel free to direct any questions towards me or @wshino(wataru)
+
+{Reactions}
+👋 (26) 🙏 (7) 
+
+[05/25/2024 00:53] itsmetechjay
+Pinned a message.
+
+
+[05/25/2024 12:40] uaarrr
+what in scope contract inherits   abstract ``BaseMarket`` ??  only the  `` BaseMarketUpgradable``  is inherited  by   ``PerpMarketV1`` &  ``GammaTradeMarket``
+
+
+[05/25/2024 12:55] syuhei.
+BaseMarket is the immutable version of BaseMarketUpgradable, but there are no contracts that inherit from BaseMarket now. The same can be said about BaseHookCallback.
+
+
+[05/25/2024 20:52] neo_granicen
+Is there any resource that explains how the formulas of "The Relationship between the Value of Uniswap V3 LP Position and the square root of the price
+" where driven and the logic behind them @syuhei
+
+
+[05/26/2024 00:55] syuhei.
+I believe formula (10) from this paper will be helpful: 
+"The Replicating Portfolio of a Constant Product Market with Bounded Liquidity, Joseph Clark" https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3898384
+
+
+[05/26/2024 10:00] katrixrldd
+is the 4naly3er report supposed to be empty?
+
+
+[05/26/2024 13:17] neo_granicen
+when you say "By holding both state (1) and state (4) simultaneously, it is possible to create a state with a value of 2√x." its unclear what you are reffering to as state 1 and 4 and what do you mean by state @syuhei https://docs.predy.finance/predy-v6/dev/squart
+
+{Embed}
+https://docs.predy.finance/predy-v6/dev/squart
+Squart | Predy V6
+The square root perpetual
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/OIBc5iSVj0oei6YWkCuN-44C89
+
+
+[05/26/2024 13:20] neo_granicen
+also what are you referring to by state (3) and (5)
+
+
+[05/26/2024 13:34] syuhei.
+It would be more accurate to refer to this as an "equation" rather than a "state." Additionally, there are a few errors in the current equation. I will revise the document accordingly. thank you.
+What we want to achieve here is to add equation 4 (the position arising from borrowing and lending tokens from a lending pool) to equation 1 (the value of the LP Position in Uniswap V3) in order to create a position with a value of 2√x.
+
+
+[05/26/2024 13:41] neo_granicen
+is the error also present in the code so that i can check the right equation
+
+
+[05/26/2024 13:41] neo_granicen
+and is there an error with the first part because i see that the x is missing
+
+{Reactions}
+👍 
+
+[05/26/2024 13:48] syuhei.
+The problem exists only in the document. Equation (5) is missing the x, and equation (4) itself is slightly incorrect.
+
+
+[05/26/2024 14:16] neo_granicen
+can you tell me the problem with equation 4 so that i can continur reading the document and by the way i dont see that 4 is an eqaution it just explain how to cacultate the real reserves its 2 equations
+
+
+[05/26/2024 14:48] syuhei.
+yes. what should have been written in (4) is actually:
+
+Squart = (1) + (4) = LP Position Value + asset/liability
+
+Therefore, (4) represents the asset/liability.
+I have revised the document accordingly.
+https://docs.predy.finance/predy-v6/dev/squart
+
+
+[05/26/2024 15:00] neo_granicen
+thank you for the effort but I still don't get what (4) is and how we came up with it and what you want to represent by it you said a lending pool but what lending pool aren't we here talking about liquidity @syuhei
+
+
+[05/26/2024 15:15] syuhei.
+What we aim to do here is to create Squart from the LP position.
+The necessary asset/liability to create Squart is represented by equation (4). Therefore, it might be better to write it this way.
+(4) = (2√x) - (1)
+
+
+[05/26/2024 15:53] neo_granicen
+ahh like this its a lot better but you dont need to change the naming for people will get condused with the quations that represents the real reserve
+
+
+[05/26/2024 15:54] neo_granicen
+but who will give the loan @syuhei
+
+
+[05/27/2024 03:43] mctoady
+Hey, double checking if the contracts in the `markets/spot/` folder are all OOS as there's a `SpotMarket.sol` diagram in the README but the contract is not listed in the scope
+
+
+[05/27/2024 04:50] guy_in0xnito
+Started a thread.
+
+{Reactions}
+👀 
+
+[05/27/2024 04:58] syuhei.
+Yes, contents in src/markets/spot folder are out of scope.
+
+{Reactions}
+👍 
+
+[05/27/2024 12:05] 0xabhay.
+https://youtu.be/HfwvfgHBORY?si=jfeEco6_eB8XDfbj
+
+{Embed}
+ETHTaipei
+https://www.youtube.com/watch?v=HfwvfgHBORY
+The history of Gamma trading in DeFi | Ibe, Predy Finance | ETHTaip...
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/maxresdefault-BF663.jpg
+
+{Reactions}
+👍 (4) 
+
+[05/27/2024 12:29] syuhei.
+I added 2 activity flow diagrams in the doc https://docs.predy.finance/predy-v6/dev/architecture/flowchart
+
+{Reactions}
+👍 (2) 
+
+[05/27/2024 12:32] syuhei.
+Predy has Lenders and Traders. Lenders provide tokens to Predy, and Traders borrow these tokens for leveraged trading.
+https://docs.predy.finance/predy-v6/dev/architecture#lender
+
+
+[05/27/2024 13:19] daniel526
+Am I the only one having this?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-6F169.png
+
+
+[05/27/2024 13:36] syuhei.
+please run `npm i` before `forge test`.
+
+
+[05/27/2024 13:38] daniel526
+That worked! Thank you!
+
+{Reactions}
+👍 
+
+[05/27/2024 14:57] neo_granicen
+But then where does uniswap fit into the picture?
+
+
+[05/27/2024 15:05] neo_granicen
+do you have any other helful resources like this??
+
+
+[05/27/2024 15:10] 0xabhay.
+Please go through the doc and understand how perpetual and options contracts work.
+
+
+[05/27/2024 15:10] neo_granicen
+i am already doing so but there are some confusing things
+
+
+[05/27/2024 15:11] 0xabhay.
+https://lambert-guillaume.medium.com/
+
+{Embed}
+https://lambert-guillaume.medium.com/
+Guillaume Lambert – Medium
+Read writing from Guillaume Lambert on Medium. Asst professor in Applied Physics at Cornell. LambertLab.io PI and proud father. Interests: Biophysics, Math, Crypto, and Options (often all at the same time).
+
+{Reactions}
+👍 
+
+[05/27/2024 15:11] 0xabhay.
+Can you explain your confusion?
+
+
+[05/27/2024 15:11] neo_granicen
+Its with the squart thing
+
+
+[05/27/2024 15:12] neo_granicen
+i don't get what it is and how it related to uniswap
+
+
+[05/27/2024 15:13] guy_in0xnito
+Can anyone tell me was there any bot or analyzer run before the contest
+
+{Reactions}
+4739_Skeletor 
+
+[05/27/2024 15:14] 0xabhay.
+Go through this article I hope it will help you to understand how options contract works with uniV3
+
+
+[05/27/2024 15:15] neo_granicen
+but just wanted to know is squart an option its said that its a perpetual feature that is similar to options in that it has gamma exposure
+
+
+[05/27/2024 15:20] syuhei.
+Squart differs from options in that it does not have a strike price. To maintain the value of Squart at √x, the underlying Uniswap LP positions are rebalanced. We refer to this process as Reallocation.
+
+{Reactions}
+👍 
+
+[05/27/2024 16:26] neo_granicen
+so instead of trying to maintain the contract price to the underlying price here you try to maintain it to the square root of x and you use Lp reallocation instead of a funding rate. @syuhei
+
+
+[05/28/2024 00:25] syuhei.
+yes, right.
+It might be misleading that the document refers to "perpetual future." Indeed, perpetual futures adjust the contract price using a funding rate. However, Predy does not use a funding rate to track the price.
+
+
+[05/28/2024 05:23] almurhasan
+globalData.callSettlementCallback(settlementData, totalBaseAmount); how this works???
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/Trade.sol#L94
+
+{Embed}
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/Trade.sol
+2024-05-predy/src/libraries/Trade.sol at main · code-423n4/2024-05-...
+Contribute to code-423n4/2024-05-predy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/a752f8fd-ae79-4d48-83da-8a6a213214e9-D71D1
+
+
+[05/28/2024 05:47] syuhei.
+Call the `predySettlementCallback` function in the MarketContract (caller of PredyPool).
+https://github.com/code-423n4/2024-05-predy/blob/main/src/base/BaseMarketUpgradable.sol#L49-L59
+
+chart: https://docs.predy.finance/predy-v6/dev/architecture/flowchart#perpmarket.executeorderv3
+
+
+[05/28/2024 06:13] guy_in0xnito
+@syuhei Mentioned you in pvt thread sir
+
+{Reactions}
+👍 
+
+[05/28/2024 08:55] neo_granicen
+then what does it use?
+
+
+[05/28/2024 09:06] syuhei.
+In Predy, perps are fully covered by assets. Therefore, there is no need to track prices.
+
+
+[05/28/2024 12:50] guy_in0xnito
+https://docs.predy.finance/predy-v6/dev/architecture/flowchart#perpmarket.executeorderv3
+Did anyone understand this flowchart ?
+
+{Embed}
+https://docs.predy.finance/predy-v6/dev/architecture/flowchart
+Flowchart | Predy V6
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/Qlcl0eqb1Z5UFlKw9Obr-FEF69
+
+
+[05/28/2024 13:10] itsmetechjay (pinned)
+ℹ️ The [Automated Findings report](https://github.com/code-423n4/2024-05-predy/blob/main/4naly3er-report.md) report has been added.  We appreciate your patience.
+
+
+[05/28/2024 13:10] itsmetechjay
+Pinned a message.
+
+
+[05/28/2024 15:53] 0xauditism
+What do you need help with ?
+
+
+[05/28/2024 16:08] 0xauditism
+Is it assumed that the price of one ETH is 100 USD here ?
+
+{Reactions}
+👍 
+
+[05/28/2024 16:50] kapitankalbasa
+hello i just got into the contest i get this error while running npm i
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/2024-05-28_195000-C6BB4.png
+
+
+[05/29/2024 00:23] vad37
+Will `PredyPool.registerPair()` remove `onlyOpeator` modifier in the future? Or all new pools will go through admin from now on?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-52956.png
+
+
+[05/29/2024 01:25] guy_in0xnito
+Getting confused with the flow with the codebase
+
+
+[05/29/2024 06:32] syuhei.
+Yes, in the future, we plan to allow anyone to create a pair.
+
+
+[05/29/2024 08:25] ericselvig
+Was the access control on `PredyPool::registerPair` only added after the exploit?
+
+
+[05/29/2024 08:36] syuhei.
+we have also added the `nonReentrant` modifier to `PredyPool::trade`.
+
+{Reactions}
+👍 
+
+[05/29/2024 09:04] vad37
+Should this be addressed in README before contest began? 
+It is major implication  on what user can do.
+Cause with current README only trusted Operator can create new pair.
+
+{Reactions}
+👍 (4) 
+
+[05/29/2024 09:49] syuhei.
+this is an important point that should be included in the README.  I forgot about it.
+
+
+[05/29/2024 10:05] 0xauditism
+So we should assume anyone can create a pair ?
+
+
+[05/29/2024 10:17] kapitankalbasa
+?
+
+
+[05/29/2024 10:20] syuhei.
+I'm not quite sure if it's acceptable to change the assumptions in the README during the contest.
+
+{Reactions}
+✅ 
+
+[05/29/2024 10:21] syuhei.
+Sorry, I don't have Windows environment to test it.
+
+
+[05/29/2024 10:21] kapitankalbasa
+Do you know someplace a can ask this question?
+
+
+[05/29/2024 10:29] 0xabhay.
+@syuhei
+
+
+[05/29/2024 10:50] 0xauditism
+I guess it is a no
+
+{Reactions}
+👍 
+
+[05/29/2024 10:51] 0xabhay.
+@syuhei Please confirm this
+
+
+[05/29/2024 10:52] 0xauditism
+I think it is up to @syuhei and C4 staff to confirm this because C4 makes the contest rules
+
+
+[05/29/2024 10:55] syuhei.
+I would like to add the assumption that "anyone can create a pair." in README. Let's check the rules with the C4 staff. 
+@Jay | C4
+
+{Reactions}
+👍 
+
+[05/29/2024 11:51] pxng0lin
+Is there a function for removing pairs? I can't seem to locate it searching for an obvious function name?
+
+
+[05/29/2024 11:57] syuhei.
+no anyone can't remove pair.
+
+
+[05/29/2024 11:57] pxng0lin
+So once the max is reached, then what?
+
+
+[05/29/2024 12:04] syuhei.
+I think it should be fine since it's a uint256. If it reach max, we would deploy a different contract. However, if the gas fees are very low, there is a possibility of malicious behavior to add many pairs.
+
+{Reactions}
+👍 (2) 
+
+[05/29/2024 12:04] pxng0lin
+Understood, thanks
+
+
+[05/29/2024 12:33] guy_in0xnito
+I think this should also go to readme
+
+
+[05/29/2024 12:35] guy_in0xnito
+And the operator modifier was added after the vulnerability i think so why change it after all making anyone to create or register a pair ?
+
+
+[05/29/2024 12:57] chista0x
+@syuhei As far as I know, version 6 has not been reviewed before this.
+Have previous versions been security checked?
+How to compare the codes of the previous and new versions? I want to know what things have been changed and added in version 6?
+
+
+[05/29/2024 13:04] web3tycoon
+anyone else getting this error
+```
+  root@DESKTOP-59I7VRJ:~/Security_2024/2024-05-predy# forge coverage --ir-minimum
+Warning! "--ir-minimum" flag enables viaIR with minimum optimization, which can result in inaccurate source mappings.
+Only use this flag as a workaround if you are experiencing "stack too deep" errors.
+Note that "viaIR" is only available in Solidity 0.8.13 and above.
+See more: https://github.com/foundry-rs/foundry/issues/3357
+[⠒] Compiling...
+[⠆] Compiling 202 files with 0.8.19
+[⠰] Solc 0.8.19 finished in 106.44ms
+Error: 
+Compiler run failed:
+Error: Unknown key "simpleCounterForLoopUncheckedIncrement"
+root@DESKTOP-59I7VRJ:~/Security_2024/2024-05-predy# 
+
+```
+
+
+[05/29/2024 13:14] oxelmiguel
+it works well for me
+
+
+[05/29/2024 13:14] ericselvig
+How is  `SupplyToken`  used in the protocol?
+
+
+[05/29/2024 13:23] cholakovv
+is used as bond token(share) and is minted to the lender when he adds liquidity as quoteToken or baseToken to the pool
+
+{Reactions}
+👍 (2) 
+
+[05/29/2024 13:39] chista0x
+@syuhei I checked the `Postmortem Report` and github history; That I think the `registerPair` fuction does not have `onlyOperator` before attack, its true?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-B5D52.png
+
+
+[05/29/2024 13:43] .nnez
+Do you have an in-depth detail on `Liquidation`?
+
+
+[05/29/2024 14:39] kapitankalbasa
+solved the problem
+
+
+[05/29/2024 16:43] ericselvig
+Thank you!
+
+{Reactions}
+🫡 
+
+[05/29/2024 18:17] kartoonjoy (pinned)
+Wardens, please note:
+
+> In the [All trusted roles in the protocol](https://github.com/code-423n4/2024-05-predy/blob/main/README.md#all-trusted-roles-in-the-protocol) chart, the sponsor would like to also note that 
+> 
+> *In the future, it is expected that anyone will be able to add pairs.*
+
+{Embed}
+https://github.com/code-423n4/2024-05-predy/blob/main/README.md
+2024-05-predy/README.md at main · code-423n4/2024-05-predy
+Contribute to code-423n4/2024-05-predy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/a752f8fd-ae79-4d48-83da-8a6a213214e9-D71D1
+
+{Reactions}
+🫡 (7) 
+
+[05/29/2024 18:17] kartoonjoy
+Pinned a message.
+
+
+[05/29/2024 21:04] palmcivet
+is there a way to get the pairId for an already registered pair?
+
+
+[05/30/2024 01:49] anmol.eth
+What is  `feeRatio` ?
+
+
+[05/30/2024 02:01] syuhei.
+The feeRatio is the percentage of the fee. For example, if the feeRatio is 10%, 10% of the borrowing interest is collected as a fee. Half of this, 5%, goes to the protocol, and the other half, 5%, goes to the pool creator.
+
+
+[05/30/2024 02:14] cholakovv
+only 1 predy pool will be deployed, right?
+
+
+[05/30/2024 03:23] linmiaomiao_qaq
+the right value of this equation is 2 * L * sqrt(x)？is it  wrong？
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-85669.png
+
+
+[05/30/2024 05:53] saint6704
+@syuhei Can you see pvt thread ?
+
+
+[05/30/2024 06:09] syuhei.
+That's not necessarily the case.
+
+
+[05/30/2024 06:11] cholakovv
+so it can be more than 1?
+
+
+[05/30/2024 06:36] chista0x
+@syuhei I would be grateful if you answer my previous questions first.
+Also, my other question is that if you expect that in the future any user can create a new pair, then the `onlyOperator` modifier of  `registerPair` function is temporary and we should not consider it in the review? Because currently, despite this modifier, not everyone can create a new pair.
+
+
+[05/30/2024 07:06] syuhei.
+yes.
+
+
+[05/30/2024 07:10] syuhei.
+Yes, the onlyOperator modifier is temporary. For the contest, please assume that anyone can add pairs.
+
+{Reactions}
+👍 (4) 
+
+[05/30/2024 08:30] web3tycoon
+who can explain to me gamma trade ,, in simple terms ... i feel like i have grasped it... but not fully?
+
+
+[05/30/2024 09:33] kapitankalbasa
+gamma measures the rate at which an option's delta changes as the underlying asset moves. It's like knowing how fast the toy car's price will change if the price of plastic changes faster or slower.
+
+
+[05/30/2024 09:39] ch_301
+Is this what you refer to?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/Untitled-D27AD.png
+
+
+[05/30/2024 09:40] kapitankalbasa
+yea preaty much
+
+
+[05/30/2024 10:18] neo_granicen
+what does path independece in the docs mean?
+
+
+[05/30/2024 10:30] syuhei.
+In the context of AMMs, "path independence" means that the value of LPs is determined solely by the current price, regardless of the path taken by the price movements.
+
+
+[05/30/2024 10:33] coffiasd
+🔥
+
+
+[05/30/2024 10:45] neo_granicen
+Can you explain to me what is rebalancing in the context of predy and why and when its done?
+
+
+[05/30/2024 11:07] iwildsniperi
+what are contracts associated only with swapping spot markets, and are those inScope?
+
+
+[05/30/2024 12:07] web3tycoon
+this one is funny what is a vaultId?
+
+
+[05/30/2024 13:44] daniel526
+@syuhei Kindly check on private thread when back
+
+
+[05/30/2024 14:09] syuhei.
+If the file is within the libraries, it should be in scope.
+
+
+[05/30/2024 14:25] iwildsniperi
+So predy is perp dex that using spot dex to help deposit collat?
+Or your spot dex is just a seperate spot dex with seperate functionality in its own?
+
+
+[05/30/2024 21:48] nour99
+what's the meaning of virtual positions
+
+
+[05/31/2024 01:54] linmiaomiao_qaq
+@syuheican you anser my question？the right value of this equation is 2 * L * sqrt(x)，I think doc is wrong？
+
+{Reactions}
+👆 
+
+[05/31/2024 01:59] syuhei.
+Yes, as you pointed out, the right-hand side is missing an L.
+
+
+[05/31/2024 04:26] guy_in0xnito
+@syuhei Mentioned you in pvt thread!
+
+
+[05/31/2024 06:31] chista0x
+Can anyone help me?
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-3F30C.png
+
+
+[05/31/2024 07:00] anmol.eth
+I'm little confused about the trade function allowlist thing. is it whitelisting the markets that is able to trade with that pair or pair owner can allow anyone ?
+
+
+[05/31/2024 07:21] gumgumzum
+I believe it's an issue with foundry, you need to install the version specified in the README
+
+{Reactions}
+👍 
+
+[05/31/2024 09:03] 0xeeyore
+yep, that worked for me with this issue
+
+{Reactions}
+👍 
+
+[05/31/2024 10:54] kombainera
+Hey guys, can someone tell me if I understand the vault correctly, please. Every trader has it's own vault where he deposits initial quote tokens that he can use for trading. This helps because it eliminates the gas fees of transaction because you make only 1 vault that you can fill instead of making a new transaction for every trade and the collateral that you chose will be taken from your vault.
+
+Is this how it is supposed to work?
+
+
+[05/31/2024 11:04] 0xeeyore
+Nop. 
+
+User can have multiple vaults, vault is like a place where you store margin for you open position (Perp or Gamma). With current code you don't deposit collateral directly to the Vault but this can be done via callback functions (predySettlementCallback or predyTradeAfterCallback), you can also transfer directly if you build your own Market contract.
+
+The idea in Predy about no gas fees is build-in in the market contracts (Prep and Gamma) where they are using Permit2 and a special service called Filler. It is the Filler how perform user transaction based on user signed Permit2 tx.
+
+{Reactions}
+🙏 (8) 
+
+[05/31/2024 11:08] kombainera
+Got it, thank you for the explanation
+
+
+[05/31/2024 11:45] guy_in0xnito
+@syuhei  Is this eq Correct ?
+
+
+[05/31/2024 11:51] anmol.eth
+Can someone explain how the perp trading works with the uni v3 or it doesn't. I'm really confused with this.
+
+
+[05/31/2024 12:26] cholakovv
+I believe perp trading works with uniswap v3 using Squart. Squart is fully covered by Uniswap V3 LP positions
+
+
+[05/31/2024 12:26] cholakovv
+you can check this section of the docs https://docs.predy.finance/predy-v6/dev/squart
+
+
+[05/31/2024 12:35] anmol.eth
+Thanks. Maybe i'm not getting the point here. Currently  there are two market perpMarket and gammaMarket. I thought gamma market is supposed to work using uniswap with squart and the perpMarket is like a normal perp where it uses predyPool for leverage. Am i missing a lot of things here?
+
+
+[05/31/2024 12:54] 0xeeyore
+Nop. Squart is only used for Gamma.
+
+
+[05/31/2024 12:57] 0xeeyore
+It is quite easy, you provide collateral in form of quote token. For example USDC. You want to short ETH.
+
+You borrow from PredyPool an ETH and that ETH is sold via UniswapV3 for additional USDC, your voult is holding USDC + debt of ETH. 
+
+If ETH will go up and the margin of you USDC will not be sufficient then all the USDC accounted in voult + margin is used to buyback ETH and you are liquidated.
+If ETH will go down you got your profit, you repay your debt by buying back ETH and closing position.
+
+{Reactions}
+💪 (6) 
+
+[05/31/2024 12:59] 0xeeyore
+UniV3 is only used as a DEX for trading and the source of the token price most of the time in the Perp trading, and for the Perp trading to work users needs to provide liquidity to the PredyPool.
+
+
+[05/31/2024 13:03] kapitankalbasa
+I think there is a mistake in the docs the  = symbol is not necessary in this equation  
+R=Base+KinkRate⋅Slope1+(U−KinkRate)⋅Slope2 (U≥KinkRate)
+
+
+[05/31/2024 13:03] kapitankalbasa
+because the result are the same in both equations is the u == kinkRate
+
+
+[05/31/2024 13:20] anmol.eth
+Thanks a lot this is so precise❤️
+
+
+[05/31/2024 15:55] kapitankalbasa
+what the Constants.Q96 means in calculatePositionValue ?
+
+
+[05/31/2024 17:12] ericselvig
+It's just a constant with value 2^96
+
+
+[05/31/2024 17:26] kapitankalbasa
+Why dividing it it’s not on the function ?
+
+
+[06/01/2024 05:03] almurhasan
+function updateScaler, where this function is called ,
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/ScaledAsset.sol#L186
+
+{Embed}
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/ScaledAsset.sol
+2024-05-predy/src/libraries/ScaledAsset.sol at main · code-423n4/20...
+Contribute to code-423n4/2024-05-predy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/a752f8fd-ae79-4d48-83da-8a6a213214e9-D71D1
+
+
+[06/01/2024 06:56] .nnez
+When they apply accrued interests
+
+
+[06/01/2024 13:20] saint6704
+hey, can someone tell me how a user will be adding to his positions ?
+which function is doing that
+
+
+[06/01/2024 15:15] .nnez
+The main entry is the trade function in `PredyPool.sol`
+
+
+[06/01/2024 15:16] saint6704
+Yes but if someone wants to add to his position how can he do that ?
+
+
+[06/01/2024 15:21] .nnez
+Same function. amount to trade is signed int. that's how you adjust the position.
+
+to reduce just make it negative, positive to add more
+
+{Reactions}
+✅ 
+
+[06/02/2024 01:08] guy_in0xnito
+I think through perp market or gamma market 
+Since they have to sign the order
+
+{Reactions}
+🫡 
+
+[06/02/2024 14:02] ericselvig
+how does a trader passes an order to the filler?
+
+
+[06/02/2024 15:24] cholakovv
+This is done off-chain. The trader signs the order and passes the order and signature to the filler. And after that the filler calls executeOrderV3 or executeTrade
+
+{Reactions}
+🙏 
+
+[06/02/2024 23:37] guy_in0xnito
+What is 100747209 in slippage check ?
+@syuhei
+
+
+[06/03/2024 07:47] anmol.eth
+Hi can anyone explain me how the fees are calculated  for user ?
+
+
+[06/03/2024 07:50] wanziskata
+Check out `Perp::updateFeeAndPremiumGrowth()`, this function will probably clear up the matter for you
+
+
+[06/03/2024 07:58] anmol.eth
+I'm kinda confused here. For squart  I understand that the pricing (fee) is based  on the uniswap trading fee at the particular ticks. But for simple perp is that a same or we take interest(fee) based on utilization without consulting uniswap fee growth ?
+
+
+[06/03/2024 14:09] wanziskata
+honestly I have no idea, your question is a bit too advanced for what I understand so far, sorry 😄
+
+
+[06/03/2024 16:19] .nnez
+fee for leverage position?
+
+
+[06/03/2024 16:39] julian.avantgarde
+@syuhei Could you check DM? Thanks.
+
+
+[06/03/2024 17:02] syuhei.
+it's the sqrt of 101.5%
+
+
+[06/03/2024 23:38] guy_in0xnito
+Thanks 
+Also kind of mentioned you in pvt thread 
+Thanks
+
+
+[06/04/2024 02:15] anmol.eth
+Yeap
+
+
+[06/04/2024 02:49] .nnez
+It's based from utilization as you understand it.
+
+
+[06/04/2024 04:49] web3tycoon
+@syuhei i have a question for a pair id lets say eth/usdc ..... is eth strictly the base and usdc strictly the quote token
+
+
+[06/04/2024 04:50] 0xabhay.
+yes you are right
+
+
+[06/04/2024 04:51] web3tycoon
+so in other word there will be anothe pair id for usdc/eth
+
+
+[06/04/2024 04:51] web3tycoon
+@0xabhay  pair 1 = eth/usdc and another pair 30 = usdc/eth??
+
+
+[06/04/2024 04:54] 0xabhay.
+each pair can have a unique ID even if they're the same pair, like ETH/USDC. So, you could have pair ID 1 for "ETH/USDC" and pair ID 2 for "ETH/USDC" as well. Does that clarify things?
+
+
+[06/04/2024 04:54] 0xabhay.
+yes
+
+
+[06/04/2024 05:23] guy_in0xnito
+Liquidation calls for particular market should come through 
+Basemarket or gammamarket right ?
+
+
+[06/04/2024 07:26] cholakovv
+the liquidation starts in PerpMarket or GammaMarket
+
+{Reactions}
+💯 
+
+[06/04/2024 07:29] wanziskata
+Is there an easy way for us to differentiate the fees earned by the user through their Perpetual/Gamma position and the accumulated fees from the Uniswap position, throughout the whole protocol? @syuhei
+
+
+[06/04/2024 08:47] web3tycoon
+what in general is trying to be achieved by `reallocation()` what is the main idea
+
+
+[06/04/2024 08:51] kombainera
+@web3Tycoon  I think this is made so when the price in uniswap v3 goes to a different tick range, they reallocate the predy pool liquidity to the correct tick range so the LP providers keep earning yield
+
+{Reactions}
+👍 
+
+[06/04/2024 08:52] web3tycoon
+so in simple terms ur just a liquidity providier for uniswap pairs.. but automatically aiming for the range..
+
+{Reactions}
+✅ 
+
+[06/04/2024 08:53] kombainera
+If you are a LP only you just supply liquidity to the Predy pool and the protocol automatically just reallocate it always in the tick range where the price is so you keep earning yield
+
+
+[06/04/2024 08:54] kombainera
+This is how I understand it, someone correct me if I am wrong
+
+
+[06/04/2024 10:04] .nnez
+It is actually to maintain the value of Squart at 2xsqrt{x} where x = price of base in term of quote
+
+
+[06/04/2024 12:39] guy_in0xnito
+A user can liquidate themselves right ?
+
+{Reactions}
+👍 
+
+[06/04/2024 16:21] kapitankalbasa
+where can i find the settlementData ?
+
+
+[06/04/2024 16:46] ch_301
+```
+    struct SettlementParamsV3Internal {
+        address filler;
+        address contractAddress;
+        bytes encodedData;
+        uint256 maxQuoteAmountPrice;
+        uint256 minQuoteAmountPrice;
+        uint256 price;
+        uint256 feePrice;
+        uint256 minFee;
+    }
+```
+
+
+[06/04/2024 16:50] ch_301
+It filled here
+e.g
+https://github.com/code-423n4/2024-05-predy/blob/main/src/markets/perp/PerpMarketV1.sol#L197
+
+
+[06/04/2024 16:59] kapitankalbasa
+thanks
+
+{Reactions}
+👍 (2) 
+
+[06/05/2024 03:02] 0xabhay.
+@syuhei Hey kindly check my private thread
+
+
+[06/05/2024 08:29] izuman
+Anyone interested in working together? You can have the money just looking for experience and hopefully something I can add to my resume.
+
+
+[06/05/2024 09:10] kapitankalbasa
+yes
+
+
+[06/06/2024 16:28] cholakovv
+someone with the same error?
+
+I'm on ubuntu and tried running before `forge test`:
+`npm i`, `npm i @uniswap/v3-core`
+
+{Attachments}
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/image-1DCAA.png
+
+
+[06/06/2024 16:41] gumgumzum
+Need to install the foundry version specified in the readme
+
+
+[06/06/2024 16:43] saint6704
+@cholakovv I had the same issue and this worked for me
+
+
+[06/06/2024 16:56] cholakovv
+thanks!
+
+
+[06/07/2024 04:48] syuhei. (pinned)
+Hi, the recent addition of "anyone can freely add pairs to the PredyPool" might be causing some confusion. Let me clarify as follows:
+
+It is interpreted as: "Anyone can freely add pairs to the PredyPool; however, the audit scope is limited to cases where WETH, USDC, ARB, USDT, DAI, WBTC are added as pairs."
+
+It is particularly important to ensure that adding new pairs does not introduce vulnerabilities that could lead to the funds of existing pairs being drained.
+
+{Reactions}
+👍 (10) 
+
+[06/07/2024 09:04] 0xabhay.
+@syuhei Hey kindly check my private thread
+
+
+[06/07/2024 09:37] web3tycoon
+@syuhei i have a question on priceFeed.sol ... what is the _decimalsDiff. is ith the difference in decimals of the quote and base tokens or????
+
+
+[06/07/2024 14:29] kartoonjoy
+Pinned a message.
+
+
+[06/07/2024 22:04] neo_granicen
+I also found that confusing at first and spent a whole day trying to understand it so i decided to create a video for you and anyone who doesnt get the decimals difference the only thing i ask in exchange is to subscribe to my channel if you want to and ask me any other questions im always here for help https://www.youtube.com/watch?v=_cZK27WnkNQ
+
+{Embed}
+Neo Granicen
+https://www.youtube.com/watch?v=_cZK27WnkNQ
+What is Price Feed Decimal Difference and how to calculate it
+Decimal difference is a concept that you might run into when studying the codebases of Defi protocols that use multiple prices to calculate a certain other price and in this video I explain what it is and how to calculate it in detail.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/maxresdefault-ED879.jpg
+
+
+[06/08/2024 10:21] sathish9098kumar
+@syuhei Please check PT , thanks
+
+
+[06/08/2024 13:16] izuman
+How do you close a position? In other words if I have a short open how to I close my short to realize my gains or loss? What function do I call?
+
+
+[06/08/2024 13:27] guy_in0xnito
+You just reduce it
+
+
+[06/08/2024 13:40] .nnez
+trade in PredyPool is the entrypoint to adjust position
+
+
+[06/08/2024 13:40] izuman
+What about the "closePosition" boolean parameter?
+
+
+[06/08/2024 13:46] guy_in0xnito
+You set it to yes if you want to close pos 
+Making your position size to 0
+
+
+[06/08/2024 13:47] izuman
+Is there an example in one of the tests ? I am having a little trouble.
+
+
+[06/08/2024 13:49] guy_in0xnito
+You call the executeorder and you set the closepos to true 
+I think in the docs there was a bit explanation about it you can check it there 
+I am not really in my laptop  so i don't know about test
+
+
+[06/08/2024 14:31] izuman
+Thanks I believe I was confusing myself with the Perpetual and Gamma stuff...
+
+
+[06/09/2024 01:10] izuman
+Is a normal trade the same as a perpetual with leverage =1 ?
+
+
+[06/09/2024 03:33] iamnmt
+Is it correct to think of `auctionData` in `PerpOrderV3` as slippage protection?
+
+
+[06/09/2024 03:39] .nnez
+do you mean as spot trade?
+
+
+[06/09/2024 03:39] izuman
+Yes, considering both are spot trades
+
+
+[06/09/2024 04:04] .nnez
+I don't think it's exactly the same as the spot market.
+In spot market you exchange your quote token for base token and you actually hold those base token.
+Perp market, you hold perp contract. Base token is actually held by vault on PredyPool and it can still get liquidated
+
+
+[06/09/2024 06:30] izuman
+I think I understand, but now I am wondering what the benefit is from just directly performing a UniSwap trade.  I see the point for perpetuals etc
+
+
+[06/09/2024 06:31] .nnez
+from the top of my head, it would be gasless transaction.
+
+
+[06/09/2024 06:43] izuman
+Ah, good point.
+
+
+[06/10/2024 06:57] izuman
+Can someone explain the purpose of the initializeLock() function?
+
+
+[06/10/2024 07:55] daniel526
+@syuhei please check private thread
+
+
+[06/10/2024 08:35] tutkata
+At my 9-5 rn so I can’t go in depth but check out onlyByLocker modifier that is used in some functions. Should give you a good idea
+
+
+[06/11/2024 00:56] neo_granicen
+For anyone struggling with the concept of Uniswap liquidity position value in Squart and wondering where the equations come from I  made a video where I explained the whole thing and how the equation were derived so you don't need to read the 60 pages worth of papers they reference to https://youtu.be/ljKnIvo0uHw
+
+{Embed}
+Neo Granicen
+https://www.youtube.com/watch?v=ljKnIvo0uHw
+What is uniswap position value, and what is the logic behind its fo...
+In this video, we go over a fundamental concept in defi protocols that utilize unisawp positions to perform Gamma, options, or power perputuals trading. We go over explaining in detail and with examples what uniswap position value is, showcase its formulas, and explain why they are what they are and where they came from so that you have a solid ...
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/maxresdefault-01AD8.jpg
+
+{Reactions}
+🔥 (2) 
+
+[06/11/2024 02:54] guy_in0xnito
+@syuhei Mentioned you in pvt thread sir
+
+
+[06/11/2024 19:38] wanziskata
+@syuhei please check out my private thread once possible, thank you
+
+
+[06/12/2024 04:53] 0xabhay.
+Can someone please explain to me the following scenario in the context of smart contracts?
+
+Contract A calls Contract B, and inside Contract B, it calls Library1. Library1 then calls Library2, and Library2 calls Library3. Inside Library3, there is a call to IMath(msg.sender).ADD(...).
+
+Who will be the msg.sender in this case?
+
+
+[06/12/2024 04:58] cholakovv
+the msg.sender will be the address in Contract A, bc smart contract calls maintain the original caller throughout the chain.
+
+
+[06/12/2024 04:59] cholakovv
+you can ask also chatgpt for a more concrete answer
+
+
+[06/12/2024 05:00] 0xabhay.
+@cholakovv  so this interface will load on contract A and the ADD() function caller will be contract A?
+
+{Reactions}
+👍 
+
+[06/12/2024 05:02] cholakovv
+yes, I believe so
+
+
+[06/12/2024 05:03] 0xabhay.
+@cholakovv  thanks i hope this is right bc ChatGPT is kind of confusing sometimes it says contract A and sometimes it says contract B
+
+
+[06/12/2024 05:06] cholakovv
+yep, sometimes chatgpt hallucinates, but you can always test it on remix for example
+
+
+[06/12/2024 05:06] cholakovv
+to make sure 100%
+
+{Reactions}
+🙏 
+
+[06/12/2024 07:14] 0xauditism
+From my experience gpt is not good for these things
+
+{Reactions}
+👍 
+
+[06/12/2024 10:23] guy_in0xnito
+What is 
+Order info .hash() mean ?
+
+
+[06/12/2024 12:28] .nnez
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/orders/OrderInfoLib.sol
+
+{Embed}
+https://github.com/code-423n4/2024-05-predy/blob/main/src/libraries/orders/OrderInfoLib.sol
+2024-05-predy/src/libraries/orders/OrderInfoLib.sol at main · code-...
+Contribute to code-423n4/2024-05-predy development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/a752f8fd-ae79-4d48-83da-8a6a213214e9-D71D1
+
+
+[06/12/2024 13:06] daniel526
+@syuhei please check private thread. Thank you!
+
+
+[06/12/2024 14:00] guy_in0xnito
+Thanks
+
+
+[06/12/2024 14:00] guy_in0xnito
++1 @syuhei
+
+
+[06/12/2024 15:53] chista0x
+@wshino(wataru) Hi I have a question but i can't dm you. Could you accept my request?
+
+{Reactions}
+👍 
+
+[06/12/2024 16:02] cholakovv
++1 @syuhei
+
+
+[06/12/2024 16:51] 0xabhay.
++1 @syuhei
+
+
+[06/12/2024 20:46] adioabass
+@syuhei are there rewards tied to supplying liquidity?
+
+
+[06/13/2024 01:05] neo_granicen
+For anyone who doesn't get the FeeGrowthOutside that is used for calculations of the feegrowthInisde this is going to be of great help nearly 5 hours of research condescend in a 3 minute video https://youtu.be/dMFHa0crHrk
+
+{Embed}
+Neo Granicen
+https://www.youtube.com/watch?v=dMFHa0crHrk
+What is feeGrowthOutsideX128 in uniswap and how is it calculated?
+An introduction to the concept of fee growth outside in uniswap and that of global fee growth, which are crucial to grasping other protocols that utilize uniswap liquidity and also what is the difference between feeGrowthInside1LastX128 and feeGrowthInside0LastX128
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/maxresdefault-D4441.jpg
+
+{Reactions}
+👍 (5) 
+
+[06/13/2024 01:48] guy_in0xnito
+In perp market v1  what is the 
+_verifyOrder() for 
+O don't see it being called anyplace?
+
+
+[06/13/2024 02:14] ericselvig
+I think it was used in the previous versions, it is now replaced with `_verifyOrderV3()`
+
+
+[06/13/2024 08:08] tutkata
+I think there was some confusion here, the contract calling the IMath(msg.sender).ADD here will be Contract B, and the msg.sender variable will point to the address of Contract A ( because we are in the context of Contract B). So you are expecting Contract A to implement IMath
+
+
+[06/13/2024 08:13] 0xabhay.
+Yes !
+
+
+[06/13/2024 14:00] sathish9098kumar
+@syuhei please check PT ,thanks
+
+
+[06/13/2024 16:27] 0xabhay.
++1@syuhei
+
+
+[06/14/2024 04:27] pkqs90
+@syuhei Please check PT. Thanks!
+
+
+[06/14/2024 05:07] guy_in0xnito
++1 @syuhei
+
+
+[06/14/2024 08:55] saint6704
+leave this one for us ser 🤣
+
+{Reactions}
+🐈 
+
+[06/14/2024 09:20] syuhei.
+sorry, I can't find the PT. can you mention in PT again?
+
+
+[06/14/2024 10:14] brahma7456
+@syuhei  please PT 🫡
+
+
+[06/14/2024 12:21] prasadlak
+@syuhei Please check private thread.
+
+
+[06/14/2024 13:24] cholakovv
+@syuhei can you check PT?
+
+
+[06/14/2024 14:27] tutkata
+Is it expected that only the Market contracts interact with the PredyPool?
+
+
+[06/14/2024 14:28] tutkata
+i.e. only a minor number of contracts are whitelisted?
+
+
+[06/14/2024 14:37] .nnez
+I think anyone can interact directly with PredyPool.
+
+
+[06/14/2024 14:38] .nnez
+`This project features multiple market contracts centered around PredyPool. The market contracts define financial products and order types.`
+
+
+[06/14/2024 14:38] .nnez
+So, even a third-party protocol can integrate with PredyPool for its liquidity.
+
+
+[06/14/2024 15:58] 0xabhay.
+@syuhei sir can please check PT, thank you
+
+
+[06/14/2024 16:06] acegawd
+Sent you a message in PT ? @syuhei
+
+
+[06/14/2024 20:02] C4
+**🚨 AUDIT ALERT**
+
+@🐺Wardens The Predy audit is now closed! Huge thanks to everyone who participated 🔍, whether you submitted a finding or not.
+
+What's next: The sponsor team and judge will review the findings over the next couple of weeks. Feel free to ping a Civics-Admin if you have questions along the way!
+
+
+[06/15/2024 09:17] daniel526
+How did you get this yet no sr role?
+
+
+[06/15/2024 09:17] daniel526
+more are on Validation repo
+
+
+[06/17/2024 16:48] golomp3761
+Hi this was my first contest, is there any validation period where judge will ask me about some more details regarding the vulnerability?
+
+
+[06/17/2024 21:09] 0xrobocop
+During the judging phase, the judge might ask you for some input. If not, you will need to wait to post-judging QA but this is only open if you have the sr role.
+
+
+[06/17/2024 21:10] golomp3761
+How he will Ask me? Will he use Discord?
+
+
+[06/17/2024 21:33] 0xrobocop
+Yeah, staff will reach to you via discord.
+
+{Reactions}
+chefskiss 
+
+[06/20/2024 05:22] tudoratu
+When is the judging period beginning?
+
+
+[06/20/2024 05:52] wanziskata
+@syuhei I know the contest is over, but can you please check out my latest private thread? Thank you✌️
+
+
+[06/20/2024 07:27] izuman
+I would like to know this as well
+
+
+[06/20/2024 09:17] forgebyola
+Judging has been on
+
+
+[06/20/2024 11:14] izuman
+@forgebyola this is my first time and I read that I cannot watch the judging process and don't have a chance for appeals. How will I know if all my submissions are invalidated?
+
+
+[06/20/2024 11:43] bigsam0831
+All submissions will be made public after some weeks
+
+
+[06/20/2024 11:58] izuman
+Got, so it will look something like this?
+https://code4rena.com/audits/2024-02-althea-liquid-infrastructure#top
+
+{Embed}
+https://code4rena.com/audits/2024-02-althea-liquid-infrastructure
+Althea Liquid Infrastructure | Code4rena
+$24,500 in USDC
+13 February 8:00 PM—19 February 8:00 PM
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/c4-og-v2-8584A.png
+
+
+[06/20/2024 11:58] izuman
+Will there be a list of the invalidated submissions as well? Where could I find them?
+
+{Reactions}
+👍 
+
+[06/20/2024 12:33] blckhv
+once the github repo is public, these are only selected for report submissions
+
+
+[06/20/2024 19:27] joshuajee
+Any idea on when the Judging will be completed?
+
+
+[06/20/2024 19:35] forgebyola
+Not sure. Probably a week or 2
+
+{Reactions}
+👍 (2) 
+
+[06/21/2024 09:49] tudasiu
+Hi!
+
+I started the process to certify my identity with Provenance about a week ago and today my application has been approved by them. Please make sure that my findings are taken into consideration for this contest (i.e. the identity certification process doesn't impend that).
+
+Thank you very much!
+
+
+[06/21/2024 14:08] bigsam0831
+You have nothing to worry about bro. I wish you the very best, welcome.
+
+{Reactions}
+👍 
+
+[06/23/2024 04:10] coffiasd
+I'm not very familiar with the current rules. If I want to escalate my submission twice, at what stage and in what manner should I proceed ?
+
+
+[06/24/2024 10:16] cloudellie
+Suggest you ask this in the #⭐・sr channel
+
+
+[06/25/2024 14:01] .nnez
+Is the judging process started?
+
+
+[06/25/2024 14:40] saint6704
+not yet
+
+{Reactions}
+👍 (2) 
+
+[06/27/2024 17:31] lhoussaineph2001
+@0xweb3boy what about now
+
+
+[06/27/2024 17:31] lhoussaineph2001
+How long the judge process take ?
+
+
+[06/27/2024 20:09] 0xabhay.
+3 weeks
+
+
+[06/27/2024 20:31] lhoussaineph2001
+@0xabhay Thanks
+
+
+[06/30/2024 06:10] wanziskata
+@syuhei the thread is still open, if possible please check it out :4739_Skeletor:
+
+
+[07/02/2024 19:34] matin6517
+How many submissions were there in this contest?🤔
+
+
+[07/03/2024 06:34] 0xabhay.
+700+
+
+{Reactions}
+🙏 (2) 10_10 (2) 
+
+[07/04/2024 11:51] 1337web.eth
+What is the status here, will we have results soon?
+
+
+[07/04/2024 12:22] tigerfrake
+Yea. Very soon G
+
+{Reactions}
+c4ship (2) 
+
+[07/04/2024 14:51] saint6704
+Congratulations @Tigerfrake 👏👏 
+Well done
+
+
+[07/04/2024 14:53] tigerfrake
+Thanks pal. But isn't it too early to celebrate? Lol.
+
+Shit can turn real quick😂
+
+{Reactions}
+🤣 (5) 
+
+[07/04/2024 15:00] saint6704
+Putting my bet lol 🤣
+
+{Reactions}
+😂 (2) 
+
+[07/04/2024 17:56] daniel526
+It is happening 😂😂🎉🎉
+
+
+[07/04/2024 19:56] devpelz
+i just need a valid medium from this to get SR role😭😭
+
+
+[07/04/2024 23:47] izuman
+Same here 🙏😅
+
+{Reactions}
+🤝 (2) 10_10 koolaid legalchicken thisisfine chefskiss 
+
+[07/05/2024 11:30] lhoussaineph2001
+Relax guys . You will get it soon 😁😁
+
+{Reactions}
+🙌 🤛 
+
+[07/05/2024 20:21] tudoratu
+Which role?
+
+
+[07/05/2024 23:45] izuman
+SR role
+
+
+[07/08/2024 19:47] thebrittfactor
+🤑 🎉  Awards for **Predy**:
+
+$43,311.87 USDC » @pkqs90 
+$10,306.35 USDC » @eeyore 
+$9,574.73 USDC » @nnez 
+$5,696.81 USDC » @gumgumzum 
+$2,568.84 USDC » @zhaojohnson 
+$1,608.61 USDC » @Bauchibred 
+$1,097.37 USDC » @Rhaydden 
+$838.42 USDC » @Tigerfrake 
+$838.26 USDC » 0xhere2learn  
+$714.82 USDC » @Sathish9098 
+$663.14 USDC » @ayden 
+$594.52 USDC » @web3km 
+$550.56 USDC » @ZanyBonzy 
+$547.09 USDC » Yunaci (@cholakovv and @Vancelot) 
+$535.29 USDC » @emmac002 
+$497.11 USDC » @crypticdefense 
+$495.21 USDC » BlockSafe (@Daniel526 and @Yas000X) 
+$479.32 USDC » WinSec (@0xweb3boy, @ni8mare and @0xanmol) 
+$457.19 USDC » @3n0ch 
+$327.86 USDC » @SpicyMeatball 
+$323.85 USDC » @ikkun_1011 
+$251.45 USDC » @takarez 
+$247.60 USDC » @air_0x 
+$55.43 USDC » @Naresh 
+$55.39 USDC » @Sparrow 
+$55.27 USDC » @kodyvim 
+$43.76 USDC » @EricTee 
+$39.91 USDC » @julian_avantgarde 
+$39.91 USDC » @Light 
+$20.13 USDC » @josephdara 
+$19.37 USDC » @Kaysoft 
+$19.20 USDC » SBSecurity (@blckhv and @Slavcheww) 
+$18.24 USDC » @Jolah1 
+$15.52 USDC » @0xabhay 
+$15.35 USDC » @0xhashiman 
+$15.35 USDC » @auditism 
+$15.35 USDC » @grearlake
+
+{Reactions}
+🔥 (5) 
+
+[07/08/2024 19:48] thebrittfactor
+$5.00 USDC » LuarSec (@GhK3Ndf and lod1n) 
+$4.02 USDC » @0xMilenov 
+$4.02 USDC » @dyoff 
+$4.02 USDC » @shaflow2 
+$3.97 USDC » @forgebyola 
+$3.85 USDC » DPS (@0xJaeger and @yvuchev) 
+$3.85 USDC » @joshuajee 
+$3.05 USDC » @MSaptarshi 
+$3.05 USDC » @lydia_m_t 
+$2.89 USDC » EaglesSecurity (@kane-goldmisth and @julian_avantgarde) 
+$2.89 USDC » @MrCrowNFT 
+$1.92 USDC » @chista0x 
+$0.22 USDC » @0xb0k0 
+$0.17 USDC » @0xAkira 
+$0.17 USDC » @robertHodges 
+$0.17 USDC » @Abhan1041 
+$0.17 USDC » @Bigsam 
+$0.17 USDC » @JC 
+$0.17 USDC » @neo_granicen 
+$0.17 USDC » @Norah 
+$0.17 USDC » @Pelz 
+$0.17 USDC » @Tripathi 
+$0.17 USDC » @atoko 
+$0.17 USDC » @biakia 
+$0.17 USDC » @golu 
+$0.17 USDC » @mt030d 
+$0.17 USDC » @steadyman 
+$0.17 USDC » @unix515 
+$0.17 USDC » @y0ng0p3 
+$0.08 USDC » @0xlucky45
+
+🏁 Findings summary
+--------------------------------------
+4 High risk findings
+8 Med risk findings
+161 wardens contributed
+
+Top Hunter: pkqs90
+Top Gatherer: pkqs90
+Top QA report: Bauchibred
+
+Awards will be distributed on Polygon within the next week. Congratulations all!  💸 💸 💸
+
+*Note: If you participated in this audit and don’t see your name on this list, please wait until the report is published and the findings repo is made public to check on your submissions.*
+
+
+[07/08/2024 21:15] josephdara
+Hi @thebrittfactor | C4 @sock @Jay | C4 
+
+I have one selected for report issue with another duplicate issue. 
+
+How is that $20?
+
+
+[07/08/2024 21:17] josephdara
+With 4 highs and 8 mediums total issues in a 79k H/M pool
+
+Something is odd
+
+
+[07/08/2024 21:22] thebrittfactor
+Creating a private thread to discuss.
+
+
+[07/08/2024 21:23] saint6704
+@thebrittfactor | C4 even we had one selected for report issue 
+And that's pretty less
+Our team found 5/12 issues
+
+
+[07/08/2024 21:28] thebrittfactor
+Please note there were a fair amount of duplicates for these issues, which will lessen the slice/award amounts.
+
+
+[07/09/2024 05:26] welith
+where can we see the submissions? This was my first c4 competition and I'm still getting my way around the platform (I can see my name in the post above)
+
+
+[07/09/2024 05:30] wanziskata
+you have to wait for the final report. In order to see the results early, you need the SR role
+
+
+[07/09/2024 05:30] welith
+Thank you!
+
+{Reactions}
+❤️ 
+
+[07/09/2024 08:54] tudoratu
+Hi @thebrittfactor | C4 , it is my first contest as well. If I don't find my name in the list does that mean that none of my submissions were validated?
+Waiting for the final report
+
+
+[07/09/2024 15:26] chista0x
+Wow, I can't believe my first reward in the first contest I participated in. Although the reward is small, I am very happy 😍
+
+{Reactions}
+hi5 (6) 🎉 (7) 
+
+[07/09/2024 16:23] thebrittfactor
+Correct, please wait until the final report is published to review your submissions.
+
+
+[07/19/2024 02:41] itsmetechjay
+ℹ️ This channel is pending archive.   As a result, any private threads will be permanently deleted on Friday, 26 July 2024.  Please make sure to grab anything you might need before then.
+
+
+[07/29/2024 16:09] itsmetechjay
+ℹ️ Reminder: this channel will be deleted after 24 hours.
+
+
+[07/29/2024 17:36] mylifechangefast.eth_70767
+@zhaojohnson another banger!!
+
+{Reactions}
+🫡 
+
+[07/31/2024 11:40] chista0x
+@Jay | C4  Are the rewards distributed into wallets? Because nothing has been deposited on my wallet yet
+
+
+[07/31/2024 13:46] itsmetechjay
+Yes they are sent on Polygon wallets.  If you didn't receive it, can you open a [help desk request](https://code4rena.com/help) please and we can take a look.
+
+{Embed}
+https://code4rena.com/help
+Help | Code4rena
+Need help as a developer looking to secure your project or as a Warden finding vulnerabilities? Contact us via our Help page today.
+Code4rena - ARCHIVE-Q2-2024 - predy-may24 [1242872233345679501].txt_Files/c4-og-v2-D055C.png
+
+
+==============================================================
+Exported 315 message(s)
+==============================================================
